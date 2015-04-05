@@ -17,81 +17,79 @@ require 'pry'
 
 class GameOfLife
   def initialize(height, width)
-    @grid = Array.new(height) { Array.new(width, false) }
-    @grid_state = Array.new(height) { Array.new(width, false) }
+    @grid = Array.new(height) { Array.new(width) { [true, false].sample } }
 
+    #Glider
+    #@grid[20][5] = true
+    #@grid[21][5] = true
+    #@grid[22][5] = true
+    #@grid[22][4] = true
+    #@grid[21][3] = true
 
-    ## Glider
-    @grid[20][5] = true
-    @grid[21][5] = true
-    @grid[22][5] = true
-    @grid[22][4] = true
-    @grid[21][3] = true
+    #Pulsar
+    #@grid[10][30] = true
+    #@grid[10][31] = true
+    #@grid[10][32] = true
 
-    ## Pulsar
-    @grid[10][30] = true
-    @grid[10][31] = true
-    @grid[10][32] = true
+    #@grid[10][36] = true
+    #@grid[10][37] = true
+    #@grid[10][38] = true
 
-    @grid[10][36] = true
-    @grid[10][37] = true
-    @grid[10][38] = true
+    #@grid[12][28] = true
+    #@grid[13][28] = true
+    #@grid[14][28] = true
 
-    @grid[12][28] = true
-    @grid[13][28] = true
-    @grid[14][28] = true
+    #@grid[12][33] = true
+    #@grid[13][33] = true
+    #@grid[14][33] = true
 
-    @grid[12][33] = true
-    @grid[13][33] = true
-    @grid[14][33] = true
+    #@grid[12][35] = true
+    #@grid[13][35] = true
+    #@grid[14][35] = true
 
-    @grid[12][35] = true
-    @grid[13][35] = true
-    @grid[14][35] = true
+    #@grid[12][40] = true
+    #@grid[13][40] = true
+    #@grid[14][40] = true
 
-    @grid[12][40] = true
-    @grid[13][40] = true
-    @grid[14][40] = true
+    #@grid[15][30] = true
+    #@grid[15][31] = true
+    #@grid[15][32] = true
 
-    @grid[15][30] = true
-    @grid[15][31] = true
-    @grid[15][32] = true
+    #@grid[15][36] = true
+    #@grid[15][37] = true
+    #@grid[15][38] = true
 
-    @grid[15][36] = true
-    @grid[15][37] = true
-    @grid[15][38] = true
+    #@grid[17][30] = true
+    #@grid[17][31] = true
+    #@grid[17][32] = true
 
-    @grid[17][30] = true
-    @grid[17][31] = true
-    @grid[17][32] = true
+    #@grid[17][36] = true
+    #@grid[17][37] = true
+    #@grid[17][38] = true
 
-    @grid[17][36] = true
-    @grid[17][37] = true
-    @grid[17][38] = true
+    #@grid[18][28] = true
+    #@grid[19][28] = true
+    #@grid[20][28] = true
 
-    @grid[18][28] = true
-    @grid[19][28] = true
-    @grid[20][28] = true
+    #@grid[18][33] = true
+    #@grid[19][33] = true
+    #@grid[20][33] = true
 
-    @grid[18][33] = true
-    @grid[19][33] = true
-    @grid[20][33] = true
+    #@grid[18][35] = true
+    #@grid[19][35] = true
+    #@grid[20][35] = true
 
-    @grid[18][35] = true
-    @grid[19][35] = true
-    @grid[20][35] = true
+    #@grid[18][40] = true
+    #@grid[19][40] = true
+    #@grid[20][40] = true
 
-    @grid[18][40] = true
-    @grid[19][40] = true
-    @grid[20][40] = true
+    #@grid[22][30] = true
+    #@grid[22][31] = true
+    #@grid[22][32] = true
 
-    @grid[22][30] = true
-    @grid[22][31] = true
-    @grid[22][32] = true
-
-    @grid[22][36] = true
-    @grid[22][37] = true
-    @grid[22][38] = true
+    #@grid[22][36] = true
+    #@grid[22][37] = true
+    #@grid[22][38] = true
   end
 
   def living?(cell, y, x)
@@ -122,7 +120,7 @@ class GameOfLife
     count
   end
 
-  def start
+  def start!
     loop do
       @grid_state = Marshal.load(Marshal.dump(@grid))
       print_state
@@ -131,7 +129,7 @@ class GameOfLife
           @grid[y][x] = living?(cell, y, x)
         end
       end
-      sleep(0.2)
+      sleep(0.1)
     end
   end
 
@@ -153,6 +151,6 @@ class GameOfLife
   end
 end
 
-game = GameOfLife.new(50, 50)
-game.start
+game = GameOfLife.new(60, 70)
+game.start!
 
