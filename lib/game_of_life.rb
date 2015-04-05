@@ -94,17 +94,7 @@ class GameOfLife
 
   def living?(cell, y, x)
     total = count_alive_neighbours(y, x)
-    if cell
-      if total < 2 #rule 1
-        false
-      elsif total.between?(2,3) #rule 2
-        true
-      else
-        false #rule 3
-      end
-    else
-      total == 3 ? true : false #rule 4
-    end
+    cell ? (2..3) === total : total == 3
   end
 
   def count_alive_neighbours(y, x)
