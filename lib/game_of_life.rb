@@ -16,80 +16,8 @@
 require 'pry'
 
 class GameOfLife
-  def initialize(height, width)
-    @grid = Array.new(height) { Array.new(width) { [true, false].sample } }
-
-    #Glider
-    #@grid[20][5] = true
-    #@grid[21][5] = true
-    #@grid[22][5] = true
-    #@grid[22][4] = true
-    #@grid[21][3] = true
-
-    #Pulsar
-    #@grid[10][30] = true
-    #@grid[10][31] = true
-    #@grid[10][32] = true
-
-    #@grid[10][36] = true
-    #@grid[10][37] = true
-    #@grid[10][38] = true
-
-    #@grid[12][28] = true
-    #@grid[13][28] = true
-    #@grid[14][28] = true
-
-    #@grid[12][33] = true
-    #@grid[13][33] = true
-    #@grid[14][33] = true
-
-    #@grid[12][35] = true
-    #@grid[13][35] = true
-    #@grid[14][35] = true
-
-    #@grid[12][40] = true
-    #@grid[13][40] = true
-    #@grid[14][40] = true
-
-    #@grid[15][30] = true
-    #@grid[15][31] = true
-    #@grid[15][32] = true
-
-    #@grid[15][36] = true
-    #@grid[15][37] = true
-    #@grid[15][38] = true
-
-    #@grid[17][30] = true
-    #@grid[17][31] = true
-    #@grid[17][32] = true
-
-    #@grid[17][36] = true
-    #@grid[17][37] = true
-    #@grid[17][38] = true
-
-    #@grid[18][28] = true
-    #@grid[19][28] = true
-    #@grid[20][28] = true
-
-    #@grid[18][33] = true
-    #@grid[19][33] = true
-    #@grid[20][33] = true
-
-    #@grid[18][35] = true
-    #@grid[19][35] = true
-    #@grid[20][35] = true
-
-    #@grid[18][40] = true
-    #@grid[19][40] = true
-    #@grid[20][40] = true
-
-    #@grid[22][30] = true
-    #@grid[22][31] = true
-    #@grid[22][32] = true
-
-    #@grid[22][36] = true
-    #@grid[22][37] = true
-    #@grid[22][38] = true
+  def initialize(height, width, life_probability)
+    @grid = Array.new(height) { Array.new(width) { life_probability > rand } }
   end
 
   def living?(cell, y, x)
@@ -127,11 +55,7 @@ class GameOfLife
     @grid_state.each do |row|
       print_cells_row = '|'
       row.each_with_index do |cell|
-        if cell
-          print_cells_row += ' 0 '
-        else
-          print_cells_row += '   '
-        end
+        print_cells_row += cell ? ' 0 ' : '   '
       end
       puts print_cells_row + '|'
     end
@@ -141,6 +65,6 @@ class GameOfLife
   end
 end
 
-game = GameOfLife.new(60, 70)
+game = GameOfLife.new(54, 86, 0.1)
 game.start!
 
