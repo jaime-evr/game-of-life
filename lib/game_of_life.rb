@@ -17,7 +17,7 @@ require 'pry'
 
 class GameOfLife
   def initialize(attrs = {})
-    @speed = attrs[:speed]
+    @seconds = attrs[:seconds]
     @grid = Array.new(attrs[:height]) {
       Array.new(attrs[:width]) { attrs[:life_probability] > rand }
     }
@@ -50,7 +50,7 @@ class GameOfLife
           @grid[y][x] = living?(cell, y, x)
         end
       end
-      sleep(@speed)
+      sleep(@seconds)
     end
   end
 
@@ -68,6 +68,6 @@ class GameOfLife
   end
 end
 
-game = GameOfLife.new(height: 54, width: 86, life_probability: 0.12, speed: 0.1)
+game = GameOfLife.new(height: 54, width: 86, life_probability: 0.12, seconds: 0.1)
 game.start!
 
